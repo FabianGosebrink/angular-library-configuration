@@ -17,7 +17,15 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "lib-to-configure": [
+        "dist/lib-to-configure"
+      ],
+      "lib-to-configure/*": [
+        "dist/lib-to-configure/*"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
