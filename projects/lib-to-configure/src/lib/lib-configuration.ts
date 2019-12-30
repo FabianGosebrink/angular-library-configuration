@@ -7,7 +7,7 @@
 
 import { Injectable, Provider } from '@angular/core';
 
-export interface LibToConfigureConfiguration {
+export class LibToConfigureConfiguration {
   name: string;
 }
 

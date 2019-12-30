@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import {
-  DefaultLibConfiguration,
   LibConfiguration,
-  LibConfigurationProvider
+  LibConfigurationProvider,
+  DefaultLibConfiguration
 } from './lib-configuration';
 import { LibToConfigureComponent } from './lib-to-configure.component';
 
@@ -13,19 +13,6 @@ import { LibToConfigureComponent } from './lib-to-configure.component';
   exports: [LibToConfigureComponent]
 })
 export class LibToConfigureModule {
-  // static configuration
-  // static forRoot(configuration: LibConfiguration): ModuleWithProviders {
-  //   return {
-  //     ngModule: LibToConfigureModule,
-  //     providers: [
-  //       {
-  //         provide: LibConfiguration,
-  //         useValue: configuration
-  //       }
-  //     ]
-  //   };
-  // }
-
   static forRoot(libConfiguration: LibConfiguration = {}): ModuleWithProviders {
     return {
       ngModule: LibToConfigureModule,
@@ -37,4 +24,18 @@ export class LibToConfigureModule {
       ]
     };
   }
+
+  // static forRoot(
+  //   libConfiguration: LibToConfigureConfiguration
+  // ): ModuleWithProviders {
+  //   return {
+  //     ngModule: LibToConfigureModule,
+  //     providers: [
+  //       {
+  //         provide: LibToConfigureConfiguration,
+  //         useValue: libConfiguration
+  //       }
+  //     ]
+  //   };
+  // }
 }
