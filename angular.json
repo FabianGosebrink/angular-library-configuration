@@ -1,65 +1,33 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "da026bcb-6fb3-42d3-8094-40c8cd228bb2"
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "libToConfigure": {
-      "projectType": "library",
-      "root": "projects/lib-to-configure",
-      "sourceRoot": "projects/lib-to-configure/src",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
-          "options": {
-            "tsConfig": "projects/lib-to-configure/tsconfig.lib.json",
-            "project": "projects/lib-to-configure/ng-package.json"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/lib-to-configure/src/test.ts",
-            "tsConfig": "projects/lib-to-configure/tsconfig.spec.json",
-            "karmaConfig": "projects/lib-to-configure/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/lib-to-configure/tsconfig.lib.json",
-              "projects/lib-to-configure/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
-    },
     "consumerApp": {
       "projectType": "application",
       "schematics": {},
-      "root": "projects/consumerApp",
-      "sourceRoot": "projects/consumerApp/src",
+      "root": "projects/consumer-app",
+      "sourceRoot": "projects/consumer-app/src",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/consumerApp",
-            "index": "projects/consumerApp/src/index.html",
-            "main": "projects/consumerApp/src/main.ts",
-            "polyfills": "projects/consumerApp/src/polyfills.ts",
-            "tsConfig": "projects/consumerApp/tsconfig.app.json",
-            "aot": false,
+            "index": "projects/consumer-app/src/index.html",
+            "main": "projects/consumer-app/src/main.ts",
+            "polyfills": "projects/consumer-app/src/polyfills.ts",
+            "tsConfig": "projects/consumer-app/tsconfig.app.json",
+            "aot": true,
             "assets": [
-              "projects/consumerApp/src/favicon.ico",
-              "projects/consumerApp/src/assets"
+              "projects/consumer-app/src/favicon.ico",
+              "projects/consumer-app/src/assets"
             ],
             "styles": [
-              "projects/consumerApp/src/styles.css"
+              "projects/consumer-app/src/styles.css"
             ],
             "scripts": []
           },
@@ -67,16 +35,14 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "projects/consumerApp/src/environments/environment.ts",
-                  "with": "projects/consumerApp/src/environments/environment.prod.ts"
+                  "replace": "projects/consumer-app/src/environments/environment.ts",
+                  "with": "projects/consumer-app/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -115,16 +81,16 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/consumerApp/src/test.ts",
-            "polyfills": "projects/consumerApp/src/polyfills.ts",
-            "tsConfig": "projects/consumerApp/tsconfig.spec.json",
-            "karmaConfig": "projects/consumerApp/karma.conf.js",
+            "main": "projects/consumer-app/src/test.ts",
+            "polyfills": "projects/consumer-app/src/polyfills.ts",
+            "tsConfig": "projects/consumer-app/tsconfig.spec.json",
+            "karmaConfig": "projects/consumer-app/karma.conf.js",
             "assets": [
-              "projects/consumerApp/src/favicon.ico",
-              "projects/consumerApp/src/assets"
+              "projects/consumer-app/src/favicon.ico",
+              "projects/consumer-app/src/assets"
             ],
             "styles": [
-              "projects/consumerApp/src/styles.css"
+              "projects/consumer-app/src/styles.css"
             ],
             "scripts": []
           }
@@ -133,9 +99,9 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/consumerApp/tsconfig.app.json",
-              "projects/consumerApp/tsconfig.spec.json",
-              "projects/consumerApp/e2e/tsconfig.json"
+              "projects/consumer-app/tsconfig.app.json",
+              "projects/consumer-app/tsconfig.spec.json",
+              "projects/consumer-app/e2e/tsconfig.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -145,7 +111,7 @@
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
-            "protractorConfig": "projects/consumerApp/e2e/protractor.conf.js",
+            "protractorConfig": "projects/consumer-app/e2e/protractor.conf.js",
             "devServerTarget": "consumerApp:serve"
           },
           "configurations": {
@@ -155,6 +121,47 @@
           }
         }
       }
-    }},
-  "defaultProject": "libToConfigure"
+    },
+    "lib-to-configure": {
+      "projectType": "library",
+      "root": "projects/lib-to-configure",
+      "sourceRoot": "projects/lib-to-configure/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "projects/lib-to-configure/tsconfig.lib.json",
+            "project": "projects/lib-to-configure/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/lib-to-configure/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/lib-to-configure/src/test.ts",
+            "tsConfig": "projects/lib-to-configure/tsconfig.spec.json",
+            "karmaConfig": "projects/lib-to-configure/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/lib-to-configure/tsconfig.lib.json",
+              "projects/lib-to-configure/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "consumerApp"
 }

@@ -1,27 +1,29 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import {
+  DefaultLibConfiguration,
   LibConfiguration,
   LibConfigurationProvider,
-  DefaultLibConfiguration
-} from './lib-configuration';
+} from './config';
 import { LibToConfigureComponent } from './lib-to-configure.component';
 
 @NgModule({
   declarations: [LibToConfigureComponent],
   imports: [CommonModule],
-  exports: [LibToConfigureComponent]
+  exports: [LibToConfigureComponent],
 })
 export class LibToConfigureModule {
-  static forRoot(libConfiguration: LibConfiguration = {}): ModuleWithProviders {
+  static forRoot(
+    libModuleConfiguration: LibConfiguration = {}
+  ): ModuleWithProviders<LibToConfigureModule> {
     return {
       ngModule: LibToConfigureModule,
       providers: [
-        libConfiguration.config || {
+        libModuleConfiguration.config || {
           provide: LibConfigurationProvider,
-          useClass: DefaultLibConfiguration
-        }
-      ]
+          useClass: DefaultLibConfiguration,
+        },
+      ],
     };
   }
 

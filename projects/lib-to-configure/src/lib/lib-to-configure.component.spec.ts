@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LibToConfigureComponent } from './lib-to-configure.component';
 
@@ -6,12 +6,12 @@ describe('LibToConfigureComponent', () => {
   let component: LibToConfigureComponent;
   let fixture: ComponentFixture<LibToConfigureComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       declarations: [ LibToConfigureComponent ]
     })
     .compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(LibToConfigureComponent);

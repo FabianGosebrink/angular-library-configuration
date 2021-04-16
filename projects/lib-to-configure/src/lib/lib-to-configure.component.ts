@@ -1,19 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { LibConfigurationProvider } from './lib-configuration';
+import { LibConfigurationProvider } from './config';
 
 @Component({
-  selector: 'lib-libToConfigure',
-  template: `
-    <p>
-      lib-to-configure works! Hello Furiend
-    </p>
-  `,
-  styles: []
+  selector: 'lib-lib-to-configure',
+  template: ` <p>{{ configurationProvider.config | json }}</p> `,
+  styles: [],
 })
 export class LibToConfigureComponent implements OnInit {
-  constructor(public configuration: LibConfigurationProvider) {}
+  constructor(public configurationProvider: LibConfigurationProvider) {}
 
   ngOnInit() {
-    console.log(this.configuration.config);
+    console.log(this.configurationProvider.config);
   }
 }

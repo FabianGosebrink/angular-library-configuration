@@ -3,10 +3,14 @@ import { TestBed } from '@angular/core/testing';
 import { LibToConfigureService } from './lib-to-configure.service';
 
 describe('LibToConfigureService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+  let service: LibToConfigureService;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({});
+    service = TestBed.inject(LibToConfigureService);
+  });
 
   it('should be created', () => {
-    const service: LibToConfigureService = TestBed.get(LibToConfigureService);
     expect(service).toBeTruthy();
   });
 });
